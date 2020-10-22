@@ -1,0 +1,83 @@
+.card,
+.phone {
+	width: 710rpx;
+	height: 80rpx;
+	background-color: #FFFFFF;
+	margin-top: 30rpx;
+	display: flex;
+	padding: 0 20rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+}
+
+.bank,
+.name {
+	width: 710rpx;
+	height: 80rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 0 20rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+}
+
+.code {
+	width: 710rpx;
+	height: 80rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 0 20rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+}
+
+.left {
+	flex: 3;
+	font-size: 28rpx;
+	color: #323233;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.right {
+	flex: 8;
+	height: 100%;
+}
+
+.centre {
+	flex: 4;
+	height: 100%;
+}
+
+.yanzhengma {
+	flex: 4;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+._yanzhengma {
+	font-size: 26rpx;
+	color: #f96650;
+	width: 180rpx;
+	height: 45rpx;
+	border: 0.5px solid #f96650;
+	border-radius: 10rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+._yanzhengma_active {
+	color: #f98d68;
+	border: 0.5px solid #f98d68;
+}
+
+.placeholder {
+	font-size: 26rpx;
+	color: #cbcbcb;
+}
+
+input {
+	font-size: 28rpx;
+	color: #323233;
+}

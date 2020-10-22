@@ -1,0 +1,145 @@
+.alipay {
+	width: 690rpx;
+	height: 100rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 0 30rpx;
+	margin-top: 30rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+}
+
+.left {
+	flex: 1;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon-zhifubao {
+	color: #007AFF;
+	font-size: 70rpx;
+}
+
+.icon-weixin {
+	color: #46BB36;
+	font-size: 70rpx;
+}
+
+.icon-yinhang-nonghang {
+	color: #009882;
+	font-size: 80rpx;
+}
+
+.centre {
+	flex: 6;
+	display: flex;
+	flex-direction: column;
+	padding-left: 20rpx;
+	justify-content: center;
+}
+
+.payname {
+	font-size: 26rpx;
+}
+
+.info {
+	font-size: 24rpx;
+	color: #cdcdcd;
+}
+
+.right {
+	flex: 1;
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.icon-xiangyou {
+	font-size: 26rpx;
+	color: #323233;
+}
+
+.weixin {
+	width: 690rpx;
+	height: 90rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 0 30rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+
+}
+
+.bank {
+	width: 690rpx;
+	height: 90rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	padding: 0 30rpx;
+	border-bottom: 0.5px solid #f5f5f5;
+}
+
+.withdraw {
+	width: 690rpx;
+	height: 200rpx;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	padding: 20rpx 30rpx;
+	margin-top: 30rpx;
+}
+
+.money {
+	flex: 2;
+	margin-bottom: 20rpx;
+	display: flex;
+}
+
+.hint {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+}
+
+.word {
+	font-size: 28rpx;
+
+	color: #323233;
+	flex: 1;
+}
+
+.txt-1 {
+	font-size: 24rpx;
+	color: #cdcdcd;
+}
+
+.txt-2 {
+	font-size: 24rpx;
+	color: #89afff;
+}
+
+.txt-2_active {
+	color: #9bc3ff;
+}
+
+.input {
+	border-bottom: 0.5px solid #f5f5f5;
+	height: 100%;
+	flex: 11;
+	font-size: 40rpx;
+}
+
+.icon {
+	flex: 1;
+	border-bottom: 0.5px solid #f5f5f5;
+	height: 100%;
+	color: #cdcdcd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.icon_active {
+	color: #e6e6e6;
+}

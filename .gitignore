@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+unpackage/dist
+unpackage/debug
+
+.DS_Store
+
+.idea
