@@ -20,7 +20,7 @@
     </view>
 
     <!-- 支付宝未绑定 -->
-    <navigator url="../alipay/alipay" class="alipay" v-else>
+    <view @click="gotoBind('支付宝')" class="alipay" v-else>
       <view class="left">
         <text class="iconfont icon-zhifubao"></text>
       </view>
@@ -29,13 +29,13 @@
           支付宝
         </view>
         <view class="info">
-          未绑定
+          未绑定，请绑定后再进入提现
         </view>
       </view>
       <view class="right">
         <text class="iconfont icon-xiangyou"></text>
       </view>
-    </navigator>
+    </view>
 
     <!-- 微信已绑定 -->
     <view class="weixin" v-if="weixinAccounts">
@@ -56,7 +56,7 @@
     </view>
 
     <!-- 微信未绑定 -->
-    <navigator url="../weixin/weixin" class="weixin" v-else>
+    <view @click="gotoBind('微信')" class="weixin" v-else>
       <view class="left">
         <text class="iconfont icon-weixin"></text>
       </view>
@@ -65,16 +65,16 @@
           微信
         </view>
         <view class="info">
-          未绑定
+          未绑定，请绑定后再进入提现
         </view>
       </view>
       <view class="right">
         <text class="iconfont icon-xiangyou"></text>
       </view>
-    </navigator>
+    </view>
 
     <!-- 银行已绑定 -->
-    <view class="bank" v-if="bankAccounts">
+    <!-- <view class="bank" v-if="bankAccounts">
       <view class="left">
         <text class="iconfont icon-yinhang-nonghang"></text>
       </view>
@@ -89,10 +89,10 @@
       <view class="right">
         <radio :checked="payWay === '银行'" @click="radio('银行卡')" />
       </view>
-    </view>
+    </view> -->
 
     <!-- 银行未绑定 -->
-    <navigator url="../bank/bank" class="bank" v-else>
+    <!-- <navigator url="../bank/bank" class="bank" v-else>
       <view class="left">
         <text class="iconfont icon-yinhang-nonghang"></text>
       </view>
@@ -107,7 +107,7 @@
       <view class="right">
         <text class="iconfont icon-xiangyou"></text>
       </view>
-    </navigator>
+    </navigator> -->
 
 
 
@@ -239,6 +239,11 @@
         } else {
           this.bankAccounts = false
         }
+      },
+      
+      //跳转绑定
+      gotoBind(type) {        
+        console.log(type)
       },
 
       //点击确认提现
