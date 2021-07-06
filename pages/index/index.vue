@@ -240,9 +240,9 @@
           this.bankAccounts = false
         }
       },
-      
+
       //跳转绑定
-      gotoBind(type) {        
+      gotoBind(type) {
         console.log(type)
       },
 

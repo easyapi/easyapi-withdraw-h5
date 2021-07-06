@@ -1,18 +1,18 @@
 <script>
-	export default {
-		globalData: {
-			username: 110
-		},
-		onLaunch: function(option) {
-			
-		},
-		onShow: function() {
+  export default {
+    globalData: {
+      username: 110
+    },
+    onLaunch: function(option) {
 
-		},
-		onHide: function() {
+    },
+    onShow: function() {
 
-		}
-	}
+    },
+    onHide: function() {
+
+    }
+  }
 </script>
 
 <style>

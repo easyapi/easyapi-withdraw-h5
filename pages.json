@@ -1,35 +1,35 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
-			"style": {
-				"navigationBarTitleText": "提现"
-			}
-		},
-		{
-			"path": "pages/bank/bank",
-			"style": {
-				"navigationBarTitleText": "添加银行卡"
-			}
-		},
-		{
-			"path": "pages/weixin/weixin",
-			"style": {
-				"navigationBarTitleText": "绑定微信账号"
-			}
-		},
-		{
-			"path": "pages/alipay/alipay",
-			"style": {
-				"navigationBarTitleText": "绑定支付宝账号"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF",
-    "navigationStyle":"custom"
-	}
+  "pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "提现"
+      }
+    },
+    {
+      "path": "pages/bank/bank",
+      "style": {
+        "navigationBarTitleText": "添加银行卡"
+      }
+    },
+    {
+      "path": "pages/weixin/weixin",
+      "style": {
+        "navigationBarTitleText": "绑定微信账号"
+      }
+    },
+    {
+      "path": "pages/alipay/alipay",
+      "style": {
+        "navigationBarTitleText": "绑定支付宝账号"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF",
+    "navigationStyle": "custom"
+  }
 }
