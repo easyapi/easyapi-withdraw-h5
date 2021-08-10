@@ -44,25 +44,25 @@
       </view>
       <view class="centre">
         <view class="payname">
-          微信
+          微信支付
         </view>
         <view class="info">
           {{wechatNickname}}
         </view>
       </view>
       <view class="right">
-        <radio :checked="payWay === '微信'" @click="radio('微信')" />
+        <radio :checked="payWay === '微信支付'" @click="radio('微信支付')" />
       </view>
     </view>
 
     <!-- 微信未绑定 -->
-    <view @click="gotoBind('微信')" class="weixin" v-else>
+    <view @click="gotoBind('微信支付')" class="weixin" v-else>
       <view class="left">
         <text class="iconfont icon-weixin"></text>
       </view>
       <view class="centre">
         <view class="payname">
-          微信
+          微信支付
         </view>
         <view class="info">
           未绑定，请绑定后再进入提现
@@ -160,7 +160,7 @@
         bankAccountName: '',
 
         //用户选择的提现方式
-        payWay: '微信',
+        payWay: '微信支付',
       }
     },
     onLoad(option) {
@@ -174,9 +174,6 @@
       updataUserWithdrawAccount(params).then(res => {
         this.decideAccount()
       });
-
-
-
     },
     onShow() {
 
@@ -195,8 +192,6 @@
         this.bankAccountName = res.data.content.bankAccountName
         this.decideAccount()
       });
-
-
     },
     methods: {
       //双向绑定金额
@@ -249,14 +244,13 @@
       //点击确认提现
       Withdraw() {
 
-        if (this.payWay == '微信') {
+        if (this.payWay == '微信支付') {
           let params = {}
           params.username = getApp().globalData.username
           params.price = this.money
-          params.way = '微信'
+          params.way = '微信支付'
 
           Withdraw(params).then(res => {
-            console.log(res)
             if (res.data.code == 1) {
               uni.showToast({
                 title: res.data.content.message,
@@ -284,7 +278,6 @@
           params.account = this.alipayAccount
 
           Withdraw(params).then(res => {
-            console.log(res)
             if (res.data.code == 1) {
               uni.showToast({
                 title: res.data.content.message,

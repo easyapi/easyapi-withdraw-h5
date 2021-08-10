@@ -38,12 +38,10 @@
       //双向绑定支付宝账号
       changeAlipayAccount(e) {
         this.alipayAccount = e.detail.value;
-        console.log(this.alipayAccount)
       },
       //双向绑定支付宝姓名
       changeAlipayName(e) {
         this.alipayName = e.detail.value;
-        console.log(this.alipayName)
       },
 
       updata() {
@@ -53,7 +51,6 @@
         params.alipayName = this.alipayName
 
         updataUserWithdrawAccount(params).then(res => {
-          console.log(res)
           //绑定成功 返回提现页面
           uni.navigateBack({
             delta: 1
