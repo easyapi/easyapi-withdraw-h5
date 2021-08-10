@@ -125,14 +125,14 @@
       </view>
     </view>
 
-    <button class="btn" hover-class="active_btn" @click="Withdraw">确认提现</button>
+    <button class="btn" hover-class="active_btn" @click="withdraw">确认提现</button>
 
   </view>
 </template>
 <script>
   import {
     getUserWithdrawAccount,
-    Withdraw,
+    withdraw,
     updataUserWithdrawAccount
   } from '../../api/withdraw.js';
   export default {
@@ -176,7 +176,6 @@
       });
     },
     onShow() {
-
       let params = {}
       params.username = getApp().globalData.username
       getUserWithdrawAccount(params).then(res => {
@@ -237,20 +236,17 @@
       },
 
       //跳转绑定
-      gotoBind(type) {
-        console.log(type)
-      },
+      gotoBind(type) {},
 
       //点击确认提现
-      Withdraw() {
-
+      withdraw() {
         if (this.payWay == '微信支付') {
           let params = {}
           params.username = getApp().globalData.username
           params.price = this.money
           params.way = '微信支付'
 
-          Withdraw(params).then(res => {
+          withdraw(params).then(res => {
             if (res.data.code == 1) {
               uni.showToast({
                 title: res.data.content.message,

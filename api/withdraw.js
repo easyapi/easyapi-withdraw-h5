@@ -23,7 +23,7 @@ export const updataUserWithdrawAccount = (params) => {
 /**
  * 申请提现
  */
-export const Withdraw = (params) => {
+export const withdraw = (params) => {
   params.accessToken = 'token'
   return request(`${shopUrl}/withdraw`, 'POST', params);
 }

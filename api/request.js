@@ -1,4 +1,4 @@
-export const baseUrl = 'https://kkt-api.icooltu.com'; // 接口地址
+export const baseUrl = 'https://withdraw-api.easyapi.com'; // 接口地址
 
 export function request(url, method, data, header) {
   let requestMethod = method.toUpperCase() || "GET";
