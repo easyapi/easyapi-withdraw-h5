@@ -166,6 +166,12 @@
     onLoad(option) {
       if (option.username) {
         getApp().globalData.username = option.username
+        this.balance = option.balance
+        getApp().globalData.accessToken = option.accessToken
+        getApp().globalData.withdrawType = option.withdrawType
+        getApp().globalData.withdrawNo = option.withdrawNo
+        getApp().globalData.openid = option.openid
+        getApp().globalData.nickname = option.nickname
       }
 
       let params = {}
@@ -243,8 +249,12 @@
         if (this.payWay == '微信支付') {
           let params = {}
           params.username = getApp().globalData.username
+          params.accessToken = getApp().globalData.accessToken
+          params.withdrawType = getApp().globalData.withdrawType
+          params.withdrawNo = getApp().globalData.withdrawNo
           params.price = this.money
           params.way = '微信支付'
+          params.account =  this.wechatOpenId
 
           withdraw(params).then(res => {
             if (res.data.code == 1) {
@@ -269,6 +279,9 @@
         if (this.payWay == '支付宝') {
           let params = {}
           params.username = getApp().globalData.username
+          params.accessToken = getApp().globalData.accessToken
+          params.withdrawType = getApp().globalData.withdrawType
+          params.withdrawNo = getApp().globalData.withdrawNo
           params.price = this.money
           params.way = '支付宝'
           params.account = this.alipayAccount

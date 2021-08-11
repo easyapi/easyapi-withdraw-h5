@@ -17,7 +17,7 @@ export const getUserWithdrawAccount = (params) => {
  */
 export const updataUserWithdrawAccount = (params) => {
   params.accessToken = 'token'
-  return request(`${shopUrl}/withdraw-account`, 'POST', params);
+  return request(`${baseUrl}/withdraw-account`, 'POST', params);
 }
 
 /**
@@ -25,5 +25,5 @@ export const updataUserWithdrawAccount = (params) => {
  */
 export const withdraw = (params) => {
   params.accessToken = 'token'
-  return request(`${shopUrl}/withdraw`, 'POST', params);
+  return request(`${baseUrl}/withdraw`, 'POST', params);
 }
