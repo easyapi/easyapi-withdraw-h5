@@ -8,7 +8,7 @@ import {
  * 获取指定username用户的提现帐号信息
  */
 export const getUserWithdrawAccount = (params) => {
-  params.accessToken = 'token'
+  // params.accessToken = 'token'
   return request(`${baseUrl}/withdraw-account/mine`, 'GET', params);
 }
 
@@ -16,7 +16,7 @@ export const getUserWithdrawAccount = (params) => {
  * 更新提现账号信息
  */
 export const updataUserWithdrawAccount = (params) => {
-  params.accessToken = 'token'
+  //params.accessToken = 'token'
   return request(`${baseUrl}/withdraw-account`, 'POST', params);
 }
 
@@ -24,6 +24,6 @@ export const updataUserWithdrawAccount = (params) => {
  * 申请提现
  */
 export const withdraw = (params) => {
-  params.accessToken = 'token'
+  // params.accessToken = 'token'
   return request(`${baseUrl}/withdraw`, 'POST', params);
 }

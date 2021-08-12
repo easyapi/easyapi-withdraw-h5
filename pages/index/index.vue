@@ -176,7 +176,7 @@
 
       let params = {}
       params.username = getApp().globalData.username
-
+      params.accessToken = getApp().globalData.accessToken
       updataUserWithdrawAccount(params).then(res => {
         this.decideAccount()
       });
@@ -184,6 +184,7 @@
     onShow() {
       let params = {}
       params.username = getApp().globalData.username
+      params.accessToken = getApp().globalData.accessToken
       getUserWithdrawAccount(params).then(res => {
         //微信账户
         this.wechatOpenId = res.data.content.wechatOpenId
@@ -242,7 +243,17 @@
       },
 
       //跳转绑定
-      gotoBind(type) {},
+      gotoBind(type) {
+        if (type == '微信支付') {
+          uni.navigateTo({
+            url: '/pages/weixin/weixin',
+          });
+        }else if(type == '支付宝'){
+          uni.navigateTo({
+            url: '/pages/alipay/alipay',
+          });
+        }
+      },
 
       //点击确认提现
       withdraw() {
@@ -253,8 +264,9 @@
           params.withdrawType = getApp().globalData.withdrawType
           params.withdrawNo = getApp().globalData.withdrawNo
           params.price = this.money
-          params.way = '微信支付'
-          params.account =  this.wechatOpenId
+          params.way = '微信'
+          params.remark = '微信提现'
+          params.account = this.wechatOpenId
 
           withdraw(params).then(res => {
             if (res.data.code == 1) {
@@ -263,9 +275,11 @@
                 icon: 'none',
                 duration: 2000
               });
-              let price = this.balance
-              this.balance = price - this.money
-              this.money = null
+              if(res.data.content.success == "true"){
+                let price = this.balance
+                this.balance = price - this.money
+                this.money = null
+              }
             } else {
               uni.showToast({
                 title: res.data.message,

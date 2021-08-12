@@ -48,13 +48,30 @@
         let params = {}
         params.username = getApp().globalData.username
         params.alipayAccount = this.alipayAccount
+        params.accessToken = getApp().globalData.accessToken;
         params.alipayName = this.alipayName
 
         updataUserWithdrawAccount(params).then(res => {
-          //绑定成功 返回提现页面
-          uni.navigateBack({
-            delta: 1
-          });
+          if (res.data.code == 1) {
+            //绑定成功 返回提现页面
+            uni.showToast({
+              title: res.data.message,
+              icon: "none",
+              duration: 2000,
+            });
+            setTimeout(function() {
+              uni.navigateBack({
+                delta: 1,
+              })
+            }, 1000);
+          
+          } else {
+            uni.showToast({
+              title: res.data.message,
+              icon: "none",
+              duration: 2000,
+            });
+          }
         });
       }
     }
