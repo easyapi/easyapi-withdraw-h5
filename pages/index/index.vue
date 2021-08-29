@@ -188,11 +188,11 @@
       updataUserWithdrawAccount(params).then((res) => {
         if (res.data.code == 1) {
           //绑定成功 返回提现页面
-          uni.showToast({
-            title: res.data.message,
-            icon: "none",
-            duration: 2000,
-          });
+          // uni.showToast({
+          //   title: res.data.message,
+          //   icon: "none",
+          //   duration: 2000,
+          // });
         } else {
           uni.showToast({
             title: res.data.message,
