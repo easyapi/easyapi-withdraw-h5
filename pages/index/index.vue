@@ -62,7 +62,7 @@
     </view>
 
     <!-- 微信未绑定 -->
-    <view @click="gotoBind('微信支付')" class="weixin" v-else>
+    <view  class="weixin" v-else>
       <view class="left">
         <text class="iconfont icon-weixin"></text>
       </view>
@@ -75,7 +75,7 @@
         </view>
       </view>
       <view class="right">
-        <text class="iconfont icon-xiangyou"></text>
+       <!-- <text class="iconfont icon-xiangyou"></text> -->
       </view>
     </view>
 
