@@ -30,8 +30,11 @@
         alipayName: '',
       }
     },
-    onLoad() {
-
+    onLoad(options) {
+      if (options.alipayAccount) {
+        this.alipayAccount = options.alipayAccount,
+        this.alipayName = options.alipayName
+      }
     },
     methods: {
 
@@ -64,7 +67,7 @@
                 delta: 1,
               })
             }, 1000);
-          
+
           } else {
             uni.showToast({
               title: res.data.message,

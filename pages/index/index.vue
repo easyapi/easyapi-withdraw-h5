@@ -15,6 +15,9 @@
         </view>
       </view>
       <view class="right">
+        <view @click="gotoModify('支付宝')">修改</view>
+      </view>
+      <view class="right">
         <radio :checked="payWay === '支付宝'" @click="radio('支付宝')" />
       </view>
     </view>
@@ -50,6 +53,9 @@
           {{wechatNickname}}
         </view>
       </view>
+     <!-- <view class="right">
+        <view @click="gotoModify('微信支付')">修改</view>
+      </view> -->
       <view class="right">
         <radio :checked="payWay === '微信支付'" @click="radio('微信支付')" />
       </view>
@@ -173,13 +179,36 @@
         getApp().globalData.openid = option.openid
         getApp().globalData.nickname = option.nickname
       }
+      let params = {};
+      params.username = getApp().globalData.username;
+      params.wechatOpenId = getApp().globalData.openid;
+      params.accessToken = getApp().globalData.accessToken;
+      params.wechatNickname = getApp().globalData.nickname;
 
-      let params = {}
-      params.username = getApp().globalData.username
-      params.accessToken = getApp().globalData.accessToken
-      updataUserWithdrawAccount(params).then(res => {
-        this.decideAccount()
+      updataUserWithdrawAccount(params).then((res) => {
+        if (res.data.code == 1) {
+          //绑定成功 返回提现页面
+          uni.showToast({
+            title: res.data.message,
+            icon: "none",
+            duration: 2000,
+          });
+        } else {
+          uni.showToast({
+            title: res.data.message,
+            icon: "none",
+            duration: 2000,
+          });
+        }
       });
+
+      // let params = {}
+      // params.username = getApp().globalData.username
+      // params.accessToken = getApp().globalData.accessToken
+      // updataUserWithdrawAccount(params).then(res => {
+      //   this.decideAccount()
+      // });
+
     },
     onShow() {
       let params = {}
@@ -248,77 +277,130 @@
           uni.navigateTo({
             url: '/pages/weixin/weixin',
           });
-        }else if(type == '支付宝'){
+        } else if (type == '支付宝') {
           uni.navigateTo({
             url: '/pages/alipay/alipay',
           });
         }
       },
 
+      // 跳转修改
+      gotoModify(type) {
+        if (type == '微信支付') {
+          uni.navigateTo({
+            url: '/pages/weixin/weixin?wechatOpenId=' + this.wechatOpenId + '&wechatNickname=' + this
+              .wechatNickname,
+          });
+        } else if (type == '支付宝') {
+          uni.navigateTo({
+            url: '/pages/alipay/alipay?alipayAccount=' + this.alipayAccount + '&alipayName=' + this.alipayName,
+          });
+        }
+      },
       //点击确认提现
       withdraw() {
-        if (this.payWay == '微信支付') {
-          let params = {}
-          params.username = getApp().globalData.username
-          params.accessToken = getApp().globalData.accessToken
-          params.withdrawType = getApp().globalData.withdrawType
-          params.withdrawNo = getApp().globalData.withdrawNo
-          params.price = this.money
-          params.way = '微信'
-          params.remark = '微信提现'
-          params.account = this.wechatOpenId
 
-          withdraw(params).then(res => {
-            if (res.data.code == 1) {
-              uni.showToast({
-                title: res.data.content.message,
-                icon: 'none',
-                duration: 2000
-              });
-              if(res.data.content.success == "true"){
-                let price = this.balance
-                this.balance = price - this.money
-                this.money = null
+        if (this.payWay == '微信支付') {
+          console.log("微信")
+          if (this.weixinAccounts == false) {
+            uni.showToast({
+              title: "请绑提现账号",
+              icon: 'none',
+              duration: 2000
+            });
+          } else if (this.money == null) {
+            uni.showToast({
+              title: "请填写提现金额",
+              icon: 'none',
+              duration: 2000
+            });
+          } else if (this.money <= 0) {
+            uni.showToast({
+              title: "请填写正确的提现金额",
+              icon: 'none',
+              duration: 2000
+            });
+          } else {
+            let params = {}
+            params.username = getApp().globalData.username
+            params.accessToken = getApp().globalData.accessToken
+            params.withdrawType = getApp().globalData.withdrawType
+            params.withdrawNo = getApp().globalData.withdrawNo
+            params.price = this.money
+            params.way = '微信'
+            params.remark = '微信提现'
+            params.account = this.wechatOpenId
+
+            withdraw(params).then(res => {
+              if (res.data.code == 1) {
+                uni.showToast({
+                  title: res.data.content.message,
+                  icon: 'none',
+                  duration: 2000
+                });
+                if (res.data.content.success == "true") {
+                  let price = this.balance
+                  this.balance = price - this.money
+                  this.money = null
+                }
+              } else {
+                uni.showToast({
+                  title: res.data.message,
+                  icon: 'none',
+                  duration: 2000
+                });
               }
-            } else {
-              uni.showToast({
-                title: res.data.message,
-                icon: 'none',
-                duration: 2000
-              });
-            }
-          });
+            });
+          }
         }
 
         if (this.payWay == '支付宝') {
-          let params = {}
-          params.username = getApp().globalData.username
-          params.accessToken = getApp().globalData.accessToken
-          params.withdrawType = getApp().globalData.withdrawType
-          params.withdrawNo = getApp().globalData.withdrawNo
-          params.price = this.money
-          params.way = '支付宝'
-          params.account = this.alipayAccount
+          console.log("支付宝")
+          if (this.money == null) {
+            uni.showToast({
+              title: "请填写提现金额",
+              icon: 'none',
+              duration: 2000
+            });
+          } else if (this.money <= 0) {
+            uni.showToast({
+              title: "请填写正确的提现金额",
+              icon: 'none',
+              duration: 2000
+            });
+          } else {
+            console.log("支付提现")
+            let params = {}
+            params.username = getApp().globalData.username
+            params.accessToken = getApp().globalData.accessToken
+            params.withdrawType = getApp().globalData.withdrawType
+            params.withdrawNo = getApp().globalData.withdrawNo
+            params.price = this.money
+            params.way = '支付宝'
+            params.account = this.alipayAccount
 
-          Withdraw(params).then(res => {
-            if (res.data.code == 1) {
-              uni.showToast({
-                title: res.data.content.message,
-                icon: 'none',
-                duration: 2000
-              });
-              let price = this.balance
-              this.balance = price - this.money
-              this.money = null
-            } else {
-              uni.showToast({
-                title: res.data.message,
-                icon: 'none',
-                duration: 2000
-              });
-            }
-          });
+            withdraw(params).then(res => {
+              console.log(666)
+              if (res.data.code == 1) {
+                uni.showToast({
+                  title: res.data.content.message,
+                  icon: 'none',
+                  duration: 2000
+                });
+                let price = this.balance
+                this.balance = price - this.money
+                this.money = null
+              } else {
+                uni.showToast({
+                  title: res.data.message,
+                  icon: 'none',
+                  duration: 2000
+                });
+              }
+            });
+          }
         }
+
 
         if (this.payWay == '银行卡') {
           uni.showToast({

@@ -28,6 +28,7 @@
     onLoad() {
       this.wechatOpenId = getApp().globalData.openid;
       this.wechatNickname = getApp().globalData.nickName;
+      console.log( getApp().globalData.nickName,9999)
     },
     methods: {
       //双向绑定

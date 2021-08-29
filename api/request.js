@@ -1,4 +1,5 @@
 export const baseUrl = 'https://withdraw-api.easyapi.com'; // 接口地址
+// export const baseUrl = 'http://192.168.1.159:7070'; // 接口地址
 // export const baseUrl = 'http://127.0.0.1:7070'; // 接口地址
 
 export function request(url, method, data, header) {
