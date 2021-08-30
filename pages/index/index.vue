@@ -182,10 +182,12 @@
         getApp().globalData.openid = option.openid
         getApp().globalData.nickname = option.nickname
       }
-      this.updataUserWithdrawAccount();
+      
     },
 
-    onShow() {},
+    onShow() {
+      this.updataUserWithdrawAccount();
+    },
 
     // 更新绑定数据
     methods: {
