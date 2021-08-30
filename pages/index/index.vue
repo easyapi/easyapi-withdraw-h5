@@ -53,7 +53,7 @@
           {{wechatNickname}}
         </view>
       </view>
-     <!-- <view class="right">
+      <!-- <view class="right">
         <view @click="gotoModify('微信支付')">修改</view>
       </view> -->
       <view class="right">
@@ -62,7 +62,7 @@
     </view>
 
     <!-- 微信未绑定 -->
-    <view  class="weixin" v-else>
+    <view class="weixin" v-else>
       <view class="left">
         <text class="iconfont icon-weixin"></text>
       </view>
@@ -75,7 +75,7 @@
         </view>
       </view>
       <view class="right">
-       <!-- <text class="iconfont icon-xiangyou"></text> -->
+        <!-- <text class="iconfont icon-xiangyou"></text> -->
       </view>
     </view>
 
@@ -169,6 +169,9 @@
         payWay: '微信支付',
       }
     },
+
+
+
     onLoad(option) {
       if (option.username) {
         getApp().globalData.username = option.username
@@ -179,56 +182,53 @@
         getApp().globalData.openid = option.openid
         getApp().globalData.nickname = option.nickname
       }
-      let params = {};
-      params.username = getApp().globalData.username;
-      params.wechatOpenId = getApp().globalData.openid;
-      params.accessToken = getApp().globalData.accessToken;
-      params.wechatNickname = getApp().globalData.nickname;
-
-      updataUserWithdrawAccount(params).then((res) => {
-        if (res.data.code == 1) {
-          //绑定成功 返回提现页面
-          // uni.showToast({
-          //   title: res.data.message,
-          //   icon: "none",
-          //   duration: 2000,
-          // });
-        } else {
-          uni.showToast({
-            title: res.data.message,
-            icon: "none",
-            duration: 2000,
-          });
-        }
-      });
-
-      // let params = {}
-      // params.username = getApp().globalData.username
-      // params.accessToken = getApp().globalData.accessToken
-      // updataUserWithdrawAccount(params).then(res => {
-      //   this.decideAccount()
-      // });
-
+      this.updataUserWithdrawAccount();
     },
-    onShow() {
-      let params = {}
-      params.username = getApp().globalData.username
-      params.accessToken = getApp().globalData.accessToken
-      getUserWithdrawAccount(params).then(res => {
-        //微信账户
-        this.wechatOpenId = res.data.content.wechatOpenId
-        this.wechatNickname = res.data.content.wechatNickname
-        //支付宝账户
-        this.alipayAccount = res.data.content.alipayAccount
-        this.alipayName = res.data.content.alipayName
-        //银行卡账户
-        this.bankName = res.data.content.bankName
-        this.bankCardNo = res.data.content.bankCardNo
-        this.bankAccountName = res.data.content.bankAccountName
-        this.decideAccount()
-      });
-    },
+
+    onShow() {},
+
+    // 更新绑定数据
     methods: {
+      // 更新绑定数据
+      getUserAccount() {
+        let params = {}
+        params.username = getApp().globalData.username
+        params.accessToken = getApp().globalData.accessToken
+        getUserWithdrawAccount(params).then(res => {
+          //微信账户
+          this.wechatOpenId = res.data.content.wechatOpenId
+          this.wechatNickname = res.data.content.wechatNickname
+          //支付宝账户
+          this.alipayAccount = res.data.content.alipayAccount
+          this.alipayName = res.data.content.alipayName
+          //银行卡账户
+          this.bankName = res.data.content.bankName
+          this.bankCardNo = res.data.content.bankCardNo
+          this.bankAccountName = res.data.content.bankAccountName
+          this.decideAccount()
+        });
+      },
+      updataUserWithdrawAccount() {
+        let _that = this
+        console.log(_that, 234243)
+        let params = {};
+        params.username = getApp().globalData.username;
+        params.wechatOpenId = getApp().globalData.openid;
+        params.accessToken = getApp().globalData.accessToken;
+        params.wechatNickname = getApp().globalData.nickname;
+        updataUserWithdrawAccount(params).then((res) => {
+          if (res.data.code == 1) {
+            _that.getUserAccount();
+          } else {
+            uni.showToast({
+              title: res.data.message,
+              icon: "none",
+              duration: 2000,
+            });
+          }
+
+        });
+      },
       //双向绑定金额
       changeMoney(e) {
         this.money = e.detail.value;
